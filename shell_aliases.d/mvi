@@ -1,0 +1,3 @@
+# Together with preference Open files from applications: in the current window
+# opening files in new tabs.
+alias mvi="open -a MacVim --args"
