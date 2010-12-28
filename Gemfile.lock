@@ -1,0 +1,10 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    file_backup (1.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  file_backup (= 1.0.0)
