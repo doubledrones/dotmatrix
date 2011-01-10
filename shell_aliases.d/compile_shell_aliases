@@ -9,7 +9,7 @@ function compile_shell_aliases() {
     if [ -d $DIR ]; then
       for FILE in $DIR/*
       do
-        cat $FILE >> $ALIASES
+        cat $FILE | grep -v "^#" >> $ALIASES
       done
     fi
   done
