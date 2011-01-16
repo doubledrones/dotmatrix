@@ -4,6 +4,7 @@ function compile_shell_aliases() {
   echo "# This file will be replaced by running command 'compile_shell_aliases'" > $ALIASES
   echo "#" >> $ALIASES
   echo "# Please use $LOCAL_ALIASES_D to storage your own aliases" >> $ALIASES
+  echo "DOTMATRIX_CONF=\"$HOME/.dotmatrix\"" >> $ALIASES
   for DIR in $ALIASES.d $LOCAL_ALIASES_D
   do
     if [ -d $DIR ]; then
