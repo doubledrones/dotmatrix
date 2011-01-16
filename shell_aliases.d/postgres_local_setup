@@ -1,0 +1,1 @@
+alias postgres_local_setup="postgres_local_create_superuser postgres"

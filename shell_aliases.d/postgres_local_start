@@ -1,0 +1,1 @@
+alias postgres_local_start="$HOME/.macports/lib/postgresql84/bin/postgres -D $HOME/.macports/var/db/postgresql84/defaultdb"
