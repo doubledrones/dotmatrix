@@ -1,6 +1,6 @@
 function postgres_local_create_directory() {
   DB_ROOT="$MACPORTS_ROOT/var/db/postgresql84/defaultdb"
-  if [ ! -d DB_ROOT ]; then
+  if [ ! -d $DB_ROOT ]; then
     mkdir -p $DB_ROOT
     $MACPORTS_ROOT/lib/postgresql84/bin/initdb -D $DB_ROOT
   fi
