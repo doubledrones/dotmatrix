@@ -1,30 +1,18 @@
 function psetupall() {
   cd ~/projects
 
-  for PROJECT in *
+  if [ -z "$1" ]; then
+    PROJECTS=*
+  else
+    PROJECTS="$@"
+  fi
+  for PROJECT in $PROJECTS
   do
     echo
     echo $PROJECT
-    if [ -f $PROJECT/.rvmrc ]; then
-      cd $PROJECT
-      RVM_RUBY=`cat .rvmrc | cut -f 2 -d ' ' | cut -f 1 -d \@`
-      RVM_GEMSET=`cat .rvmrc | cut -f 2 -d ' ' | cut -f 2 -d \@`
-      if [ ! -d ~/.rvm/rubies/$RVM_RUBY-*/ ]; then
-        rvm install $RVM_RUBY
-      fi
-      cd ..
-      cd $PROJECT
-      if [ ! -z "$RVM_GEMSET" ]; then
-        rvm gemset create "$RVM_GEMSET"
-      fi
-      cd ..
-    fi
-    if [ -f $PROJECT/Gemfile ]; then
-      cd $PROJECT
-      gem install bundler
-      bundle install
-      cd ..
-    fi
+    project_setup_rvm $PROJECT
+    project_setup_bundle $PROJECT
+    project_setup_db $PROJECT
   done
   echo
 }
