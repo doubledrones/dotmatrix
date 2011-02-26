@@ -1,5 +1,5 @@
 require 'rake'
-require 'ftools'
+require 'fileutils'
 require 'rubygems'
 require 'file_backup'
 
