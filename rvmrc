@@ -1,4 +1,14 @@
-. $HOME/.shell_aliases
+function make_jobs() {
+  expr `sysctl -n hw.ncpu` \* 2 + 1
+}
+
+function build_arch() {
+  if [ `sysctl -n hw.optional.x86_64` -eq 1 ]; then
+    echo x86_64
+  else
+    echo i386
+  fi
+}
 
 rvm_gemset_create_on_use_flag=1
 
