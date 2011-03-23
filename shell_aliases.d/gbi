@@ -1,0 +1,1 @@
+alias gbi="gem install bundler && bundler install"
