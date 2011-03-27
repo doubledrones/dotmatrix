@@ -1,1 +1,1 @@
-alias gbi="gem install bundler && bundler install"
+alias gbi="gem install bundler && bundle install"
