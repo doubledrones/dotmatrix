@@ -1,6 +1,8 @@
 function pstatus() {
   IGNORE_PROJECTS="$DOTMATRIX_CONF/pstatus.ignore_projects"
   IGNORE_GEMS_IN_PROJECTS="$DOTMATRIX_CONF/pstatus.ignore_gems_in_projects"
+  IGNORE_RAILS_VERSION_IN_PROJECTS="$DOTMATRIX_CONF/pstatus.ignore_rails_version_in_projects"
+  CURRENT_RAILS_VERSION="3.0.6"
 
   if [ ! -d $DOTMATRIX_CONF ]; then
     mkdir -p $DOTMATRIX_CONF
@@ -10,6 +12,9 @@ function pstatus() {
   fi
   if [ ! -f $IGNORE_GEMS_IN_PROJECTS ]; then
     touch $IGNORE_GEMS_IN_PROJECTS
+  fi
+  if [ ! -f $IGNORE_RAILS_VERSION_IN_PROJECTS ]; then
+    touch $IGNORE_RAILS_VERSION_IN_PROJECTS
   fi
 
   cd ~/projects
@@ -40,6 +45,14 @@ function pstatus() {
             fi
           fi
         done
+        if [ -z "`cat $IGNORE_RAILS_VERSION_IN_PROJECTS | grep "^$PROJECT$"`" ]; then
+          DETECTED_RAILS_VERSION=`cat $PROJECT/Gemfile | grep "gem 'rails'"`
+          if [ ! -z "$DETECTED_RAILS_VERSION" ]; then
+            if [ -z "`cat $PROJECT/Gemfile | grep "gem 'rails', '$CURRENT_RAILS_VERSION'"`" ]; then
+              echo "$PROJECT: does not use current rails version ($CURRENT_RAILS_VERSION), detected: $DETECTED_RAILS_VERSION"
+            fi
+          fi
+        fi
       fi
     fi
   done
