@@ -53,6 +53,12 @@ function pstatus() {
             fi
           fi
         fi
+        if [ -n "`cat $PROJECT/Gemfile | grep heroku`" ]; then
+          if [ -n "`cat $PROJECT/.gitignore | grep Gemfile.lock`" ]; then
+            echo "$PROJECT: project is using Heroku but Gemfile.lock is in .gitignore"
+            echo "$PROJECT: please remove proper line in .gitignore and add Gemfile.lock to repository"
+          fi
+        fi
       fi
     fi
   done
