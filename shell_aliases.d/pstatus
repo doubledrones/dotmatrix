@@ -44,6 +44,9 @@ function pstatus() {
         esac
         cd ..
       fi
+      if [ -z "`cat $IGNORE_TODO_IN_PROJECTS | grep "^$PROJECT$"`" ]; then
+        ack -1 TODO $PROJECT
+      fi
       if [ -f $PROJECT/Gemfile ]; then
         for REQUIRED_GEM in wirble hirb awesome_print
         do
@@ -78,9 +81,6 @@ function pstatus() {
             echo "$PROJECT: project is using Heroku but Gemfile.lock is in .gitignore"
             echo "$PROJECT: please remove proper line in .gitignore and add Gemfile.lock to repository"
           fi
-        fi
-        if [ -z "`cat $IGNORE_TODO_IN_PROJECTS | grep "^$PROJECT$"`" ]; then
-          ack -1 TODO $PROJECT
         fi
       fi
     fi
