@@ -2,6 +2,7 @@ function pstatus() {
   IGNORE_PROJECTS="$DOTMATRIX_CONF/pstatus.ignore_projects"
   IGNORE_GEMS_IN_PROJECTS="$DOTMATRIX_CONF/pstatus.ignore_gems_in_projects"
   IGNORE_RAILS_VERSION_IN_PROJECTS="$DOTMATRIX_CONF/pstatus.ignore_rails_version_in_projects"
+  IGNORE_GEMCUTTER_GEM_SOURCE_IN_PROJECTS="$DOTMATRIX_CONF/pstatus.ignore_gemcutter_gem_source_in_projects"
   CURRENT_RAILS_VERSION="3.0.8"
 
   if [ ! -d $DOTMATRIX_CONF ]; then
@@ -15,6 +16,9 @@ function pstatus() {
   fi
   if [ ! -f $IGNORE_RAILS_VERSION_IN_PROJECTS ]; then
     touch $IGNORE_RAILS_VERSION_IN_PROJECTS
+  fi
+  if [ ! -f $IGNORE_GEMCUTTER_GEM_SOURCE_IN_PROJECTS ]; then
+    touch $IGNORE_GEMCUTTER_GEM_SOURCE_IN_PROJECTS
   fi
 
   cd ~/projects
@@ -51,6 +55,18 @@ function pstatus() {
             if [ -z "`cat $PROJECT/Gemfile | grep "gem 'rails', '$CURRENT_RAILS_VERSION'"`" ]; then
               echo "$PROJECT: does not use current rails version ($CURRENT_RAILS_VERSION), detected: $DETECTED_RAILS_VERSION"
             fi
+          fi
+        fi
+        if [ -z "`cat $IGNORE_GEMCUTTER_GEM_SOURCE_IN_PROJECTS | grep "^$PROJECT$"`" ]; then
+          HAS_GEMCUTTER_SOURCE=`cat $PROJECT/Gemfile | grep "^source :gemcutter$"`
+          if [ -z "$HAS_GEMCUTTER_SOURCE" ]; then
+            HAS_GEMCUTTER_SOURCE=`cat $PROJECT/Gemfile | grep "^source \"http://gemcutter.org\"$"`
+            if [ -z "$HAS_GEMCUTTER_SOURCE" ]; then
+              HAS_GEMCUTTER_SOURCE=`cat $PROJECT/Gemfile | grep "^source 'http://gemcutter.org'$"`
+            fi
+          fi
+          if [ -n "$HAS_GEMCUTTER_SOURCE" ]; then
+            echo "$PROJECT: has obsolete gemcutter source: $HAS_GEMCUTTER_SOURCE"
           fi
         fi
         if [ -n "`cat $PROJECT/Gemfile | grep heroku`" ]; then
