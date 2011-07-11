@@ -10,5 +10,5 @@ task :setup do
     config_file = File.join(ENV['HOME'], ".#{file}")
     File.symlink(source_file, config_file) unless File.exist?(config_file) || File.symlink?(config_file)
   end
-  system("source #{ENV['HOME']}/.shell_aliases.d/compile_shell_aliases && compile_shell_aliases")
+  system("source #{ENV['HOME']}/.shell_aliases.d/compile_shell_aliases.sh && compile_shell_aliases")
 end
