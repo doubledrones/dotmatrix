@@ -15,4 +15,9 @@ function compile_shell_aliases() {
       done
     fi
   done
+  for X in 1 2 3 4 5 6 7
+  do
+    cat $ALIASES | sed -e "s/^  //g" >> $ALIASES.tmp
+    mv $ALIASES.tmp $ALIASES
+  done
 }
