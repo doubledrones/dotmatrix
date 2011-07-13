@@ -1,1 +1,1 @@
-alias iotop="sudo `which iotop`"
+alias iotop="sudo `which iotop` 2> /dev/null"
