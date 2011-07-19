@@ -3,10 +3,14 @@ function make_jobs() {
 }
 
 function build_arch() {
-  if [ `sysctl -n hw.optional.x86_64` -eq 1 ]; then
-    echo x86_64
+  if [ `uname -p | grep powerpc | wc -l | cut -b8` -eq 1 ]; then
+    echo ppc
   else
-    echo i386
+    if [ `sysctl -n hw.optional.x86_64` -eq 1 ]; then
+      echo x86_64
+    else
+      echo i386
+    fi
   fi
 }
 
