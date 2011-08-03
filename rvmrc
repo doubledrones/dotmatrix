@@ -22,4 +22,4 @@ rvm_archflags="-arch `build_arch`"
 rvm_project_rvmrc_default=1
 rvm_pretty_print_flag=1
 
-export rvm_path="/Users/pr0d1r2/.rvm"
+export rvm_path="/Users/`whoami`/.rvm"
