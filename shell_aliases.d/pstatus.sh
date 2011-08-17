@@ -4,7 +4,7 @@ function pstatus() {
   IGNORE_RAILS_VERSION_IN_PROJECTS="$DOTMATRIX_CONF/pstatus.ignore_rails_version_in_projects"
   IGNORE_GEMCUTTER_GEM_SOURCE_IN_PROJECTS="$DOTMATRIX_CONF/pstatus.ignore_gemcutter_gem_source_in_projects"
   IGNORE_TO_DO_IN_PROJECTS="$DOTMATRIX_CONF/pstatus.ignore_todo_in_projects"
-  CURRENT_RAILS_VERSION="3.0.8"
+  CURRENT_RAILS_VERSION="3.0.10"
 
   if [ ! -d $DOTMATRIX_CONF ]; then
     mkdir -p $DOTMATRIX_CONF
