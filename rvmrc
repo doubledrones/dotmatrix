@@ -23,3 +23,4 @@ rvm_project_rvmrc_default=1
 rvm_pretty_print_flag=1
 
 export rvm_path="/Users/`whoami`/.rvm"
+export rvm_project_rvmrc=1
