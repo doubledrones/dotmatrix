@@ -1,17 +1,33 @@
+UNAME=`uname`
+
 function make_jobs() {
-  expr `sysctl -n hw.ncpu` \* 2 + 1
+  case $UNAME in
+    Linux)
+      expr `cat /proc/cpuinfo | grep "^processor" | wc -l` \* 2 + 1
+      ;;
+    *)
+      expr `sysctl -n hw.ncpu` \* 2 + 1
+      ;;
+  esac
 }
 
 function build_arch() {
-  if [ `uname -p | grep powerpc | wc -l | cut -b8` -eq 1 ]; then
-    echo ppc
-  else
-    if [ `sysctl -n hw.optional.x86_64` -eq 1 ]; then
-      echo x86_64
-    else
-      echo i386
-    fi
-  fi
+  case $UNAME in
+    Darwin)
+      if [ `uname -p | grep powerpc | wc -l | cut -b8` -eq 1 ]; then
+        echo ppc
+      else
+        if [ `sysctl -n hw.optional.x86_64` -eq 1 ]; then
+          echo x86_64
+        else
+          echo i386
+        fi
+      fi
+      ;;
+    Linux)
+      uname -m
+      ;;
+  esac
 }
 
 rvm_gemset_create_on_use_flag=1
@@ -22,7 +38,7 @@ rvm_archflags="-arch `build_arch`"
 rvm_project_rvmrc_default=1
 rvm_pretty_print_flag=1
 
-case `uname` in
+case $UNAME in
   Darwin)
     export rvm_path="/Users/`whoami`/.rvm"
     ;;
