@@ -22,5 +22,12 @@ rvm_archflags="-arch `build_arch`"
 rvm_project_rvmrc_default=1
 rvm_pretty_print_flag=1
 
-export rvm_path="/Users/`whoami`/.rvm"
+case `uname` in
+  Darwin)
+    export rvm_path="/Users/`whoami`/.rvm"
+    ;;
+  *)
+    export rvm_path="/home/`whoami`/.rvm"
+    ;;
+esac
 export rvm_project_rvmrc=1
