@@ -1,5 +1,13 @@
 function macports_sums_dist() {
-  for PORT in $@
+  case $1 in
+    '')
+      PORTS=`cd ~/.macports/var/macports/distfiles && ls`
+      ;;
+    *)
+      PORTS="$@"
+      ;;
+  esac
+  for PORT in $PORTS
   do
     for FILE in ~/.macports/var/macports/distfiles/$PORT/*
     do
