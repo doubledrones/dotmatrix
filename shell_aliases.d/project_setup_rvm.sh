@@ -5,7 +5,7 @@ function project_setup_rvm() {
       cd $PROJECT
       RVM_RUBY=`cat .rvmrc | grep "^rvm " | cut -f 2 -d ' ' | cut -f 1 -d \@`
       RVM_GEMSET=`cat .rvmrc | grep "^rvm " | cut -f 2 -d ' ' | cut -f 2 -d \@`
-      if [ ! -d $HOME/.rvm/rubies/$RVM_RUBY-*/ ]; then
+      if [ `ls -d $HOME/.rvm/rubies/$RVM_RUBY-* | wc -l` -eq 0 ]; then
         rvm install $RVM_RUBY
       fi
       cd ..
