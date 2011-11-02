@@ -4,6 +4,8 @@ require 'rubygems'
 
 desc "Make complete setup of configuration files. Can be run multiple times."
 task :setup do
+  shell_aliases_d = File.join(ENV['HOME'], ".shell_aliases.d")
+  File.delete(shell_aliases_d) if File.symlink?(shell_aliases_d)
   Dir['*'].each do |file|
     next if %w[README Rakefile Gemfile Gemfile.lock].include?(file)
     source_file = File.join(Dir.pwd, file)
