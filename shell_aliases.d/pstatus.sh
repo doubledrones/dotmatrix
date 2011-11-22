@@ -18,8 +18,7 @@ function pstatus() {
       esac
       cd ..
     else
-      echo "missing git"
-      return 1
+      echo "$PROJECT: missing git"
     fi
   done
 }
