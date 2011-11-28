@@ -19,6 +19,7 @@ function pstatus() {
       cd ..
     else
       echo "$PROJECT: missing git"
+      return 1
     fi
   done
 }
