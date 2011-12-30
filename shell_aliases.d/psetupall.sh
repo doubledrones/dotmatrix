@@ -14,6 +14,7 @@ function psetupall() {
     project_setup_bundle $PROJECT
     project_setup_db $PROJECT
     project_setup_bootstrap $PROJECT
+    plognull $PROJECT
   done
   echo
 }
