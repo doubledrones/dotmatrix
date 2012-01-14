@@ -7,6 +7,8 @@ function compile_shell_aliases() {
   echo "DOTMATRIX_CONF=\"$HOME/.dotmatrix\"" >> $ALIASES
   echo "MACPORTS_ROOT=\"$HOME/.macports\"" >> $ALIASES
   echo "UNAME=\"`uname`\"" >> $ALIASES
+  source $ALIASES.d/cpu_num.sh
+  echo "CPU_NUM=\"`cpu_num`\"" >> $ALIASES
   for DIR in $ALIASES.d $LOCAL_ALIASES_D
   do
     if [ -d $DIR ]; then

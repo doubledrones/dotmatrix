@@ -1,1 +1,1 @@
-alias specjour_listen="specjour listen --workers `sysctl -n hw.logicalcpu`"
+alias specjour_listen="specjour listen --workers $CPU_NUM"

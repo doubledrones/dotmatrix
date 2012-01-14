@@ -1,1 +1,1 @@
-alias specjour_prepare="specjour prepare --workers `sysctl -n hw.logicalcpu`"
+alias specjour_prepare="specjour prepare --workers $CPU_NUM"
