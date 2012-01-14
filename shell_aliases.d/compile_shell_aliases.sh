@@ -6,6 +6,7 @@ function compile_shell_aliases() {
   echo "# Please use $LOCAL_ALIASES_D to storage your own aliases" >> $ALIASES
   echo "DOTMATRIX_CONF=\"$HOME/.dotmatrix\"" >> $ALIASES
   echo "MACPORTS_ROOT=\"$HOME/.macports\"" >> $ALIASES
+  echo "UNAME=\"`uname`\"" >> $ALIASES
   for DIR in $ALIASES.d $LOCAL_ALIASES_D
   do
     if [ -d $DIR ]; then
