@@ -9,6 +9,8 @@ function compile_shell_aliases() {
   echo "UNAME=\"`uname`\"" >> $ALIASES
   source $ALIASES.d/cpu_num.sh
   echo "CPU_NUM=\"`cpu_num`\"" >> $ALIASES
+  source $ALIASES.d/make_jobs.sh
+  echo "MAKE_JOBS=\"`make_jobs`\"" >> $ALIASES
   for DIR in $ALIASES.d $LOCAL_ALIASES_D
   do
     if [ -d $DIR ]; then
