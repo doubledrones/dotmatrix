@@ -10,6 +10,8 @@ function pstatus() {
       case $STATUS in
         "## master")
           ;;
+        "## staging")
+          ;;
         *)
           echo
           git st

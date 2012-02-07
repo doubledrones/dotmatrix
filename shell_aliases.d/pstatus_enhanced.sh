@@ -36,6 +36,8 @@ function pstatus_enhanced() {
         case $STATUS in
           "## master")
             ;;
+          "## staging")
+            ;;
           *)
             echo
             echo $PROJECT
