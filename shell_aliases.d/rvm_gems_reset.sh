@@ -4,9 +4,8 @@ function rvm_gems_reset() {
 
   if [ "$REPLY" == "y" ]
   then
-    rm -rf Gemfile.lock && \
-      rm -rf `rvm gemdir` && \
-      gem install bundler && \
-      bundle install
+    rm -rf `rvm gemdir` && \
+    gem install bundler && \
+    bundle install
   fi
 }
