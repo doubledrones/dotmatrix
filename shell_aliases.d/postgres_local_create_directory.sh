@@ -1,8 +1,8 @@
 function postgres_local_create_directory() {
-  DB_ROOT="$MACPORTS_ROOT/var/db/postgresql84/defaultdb"
+  DB_ROOT="$MACPORTS_ROOT/var/db/postgresql91/defaultdb"
   if [ ! -d $DB_ROOT ]; then
     mkdir -p $DB_ROOT
-    $MACPORTS_ROOT/lib/postgresql84/bin/initdb -D $DB_ROOT
+    $MACPORTS_ROOT/lib/postgresql91/bin/initdb -D $DB_ROOT
 
     echo "--- defaultdb-vanilla/postgresql.conf	2011-04-01 12:22:20.000000000 +0200
 +++ defaultdb/postgresql.conf	2011-04-01 12:33:11.000000000 +0200
@@ -40,6 +40,6 @@ function postgres_local_create_directory() {
 +log_statement = 'all'			# none, ddl, mod, all
  #log_temp_files = -1			# log temporary files equal or larger
  					# than the specified size in kilobytes;
- 					# -1 disables, 0 logs all temp files" | patch -p1 $MACPORTS_ROOT/var/db/postgresql84/defaultdb/postgresql.conf
+ 					# -1 disables, 0 logs all temp files" | patch -p1 $MACPORTS_ROOT/var/db/postgresql91/defaultdb/postgresql.conf
   fi
 }
