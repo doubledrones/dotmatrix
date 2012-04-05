@@ -6,7 +6,7 @@ function make_jobs() {
       expr `cat /proc/cpuinfo | grep "^processor" | wc -l` \* 2 + 1
       ;;
     *)
-      expr `sysctl -n hw.ncpu` \* 2 + 1
+      expr `/usr/sbin/sysctl -n hw.ncpu` \* 2 + 1
       ;;
   esac
 }
