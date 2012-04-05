@@ -1,1 +1,3 @@
-alias make_jobs='expr $CPU_NUM \* 2 + 1'
+function make_jobs() {
+  expr $CPU_NUM \* 2 + 1
+}

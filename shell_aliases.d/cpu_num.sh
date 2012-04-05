@@ -4,7 +4,7 @@ function cpu_num() {
       cat /proc/cpuinfo | grep "^processor" | wc -l
       ;;
     *)
-      sysctl -n hw.ncpu
+      /usr/sbin/sysctl -n hw.ncpu
       ;;
   esac
 }
